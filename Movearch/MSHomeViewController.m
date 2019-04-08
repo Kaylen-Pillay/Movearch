@@ -8,25 +8,51 @@
 
 #import "MSHomeViewController.h"
 
-@interface MSHomeViewController ()
+@interface MSHomeViewController () <UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
+
+@property (strong, nonatomic) UISearchController *searchController;
+@property (strong, nonatomic) NSString *searchTerm;
 
 @end
 
 @implementation MSHomeViewController
 
+- (instancetype) init {
+    self = [super init];
+    if (self) {
+        UINavigationItem *navItem = self.navigationItem;
+        UISearchController *search = self.searchController;
+        
+        search = [[UISearchController alloc] initWithSearchResultsController:nil];
+        search.obscuresBackgroundDuringPresentation = NO;
+        search.searchResultsUpdater = self;
+        search.searchBar.delegate = self;
+        search.searchBar.placeholder = @"Search Movies";
+        
+        navItem.searchController = search;
+        navItem.title = @"Movearch";
+        self.definesPresentationContext = YES;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)updateSearchResultsForSearchController:(nonnull UISearchController *)searchController {
+    
 }
-*/
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSString *searchTerm = self.searchTerm;
+    searchTerm = searchBar.text;
+    NSLog(@"%@",searchTerm);
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    // Return to the default empty state of a tableview
+    NSLog(@"Cancelled");
+}
 
 @end
