@@ -15,6 +15,8 @@
 		64301615225B197100A8C9EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64301614225B197100A8C9EA /* main.m */; };
 		64301622225B1F7C00A8C9EA /* MSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64301620225B1F7C00A8C9EA /* MSHomeViewController.m */; };
 		64301629225B47DF00A8C9EA /* DefaultStateTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64301628225B47DF00A8C9EA /* DefaultStateTableView.xib */; };
+		6430162C225B4E0000A8C9EA /* MSMovieItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6430162B225B4E0000A8C9EA /* MSMovieItem.m */; };
+		6430162F225B514700A8C9EA /* MSMovieItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6430162E225B514700A8C9EA /* MSMovieItemStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,10 @@
 		6430161F225B1F7C00A8C9EA /* MSHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSHomeViewController.h; sourceTree = "<group>"; };
 		64301620225B1F7C00A8C9EA /* MSHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSHomeViewController.m; sourceTree = "<group>"; };
 		64301628225B47DF00A8C9EA /* DefaultStateTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultStateTableView.xib; sourceTree = "<group>"; };
+		6430162A225B4E0000A8C9EA /* MSMovieItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSMovieItem.h; sourceTree = "<group>"; };
+		6430162B225B4E0000A8C9EA /* MSMovieItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSMovieItem.m; sourceTree = "<group>"; };
+		6430162D225B514700A8C9EA /* MSMovieItemStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSMovieItemStore.h; sourceTree = "<group>"; };
+		6430162E225B514700A8C9EA /* MSMovieItemStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSMovieItemStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +96,10 @@
 		6430161C225B19A000A8C9EA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6430162A225B4E0000A8C9EA /* MSMovieItem.h */,
+				6430162B225B4E0000A8C9EA /* MSMovieItem.m */,
+				6430162D225B514700A8C9EA /* MSMovieItemStore.h */,
+				6430162E225B514700A8C9EA /* MSMovieItemStore.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -185,6 +195,8 @@
 				6430160A225B197000A8C9EA /* ViewController.m in Sources */,
 				64301622225B1F7C00A8C9EA /* MSHomeViewController.m in Sources */,
 				64301615225B197100A8C9EA /* main.m in Sources */,
+				6430162F225B514700A8C9EA /* MSMovieItemStore.m in Sources */,
+				6430162C225B4E0000A8C9EA /* MSMovieItem.m in Sources */,
 				64301607225B197000A8C9EA /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
