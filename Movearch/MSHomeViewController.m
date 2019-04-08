@@ -8,7 +8,7 @@
 
 #import "MSHomeViewController.h"
 
-@interface MSHomeViewController () <UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
+@interface MSHomeViewController ()
 
 @property (strong, nonatomic) UISearchController *searchController;
 @property (strong, nonatomic) NSString *searchTerm;
@@ -18,7 +18,7 @@
 @implementation MSHomeViewController
 
 - (instancetype) init {
-    self = [super init];
+    self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
         UINavigationItem *navItem = self.navigationItem;
         UISearchController *search = self.searchController;
@@ -28,9 +28,9 @@
         search.searchResultsUpdater = self;
         search.searchBar.delegate = self;
         search.searchBar.placeholder = @"Search Movies";
-        
         navItem.searchController = search;
         navItem.title = @"Movearch";
+        
         self.definesPresentationContext = YES;
     }
     return self;
@@ -38,6 +38,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.tableView registerClass:[UITableViewCell class]
+           forCellReuseIdentifier:@"UITableViewCell"];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // configure a cell;
+    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
 - (void)updateSearchResultsForSearchController:(nonnull UISearchController *)searchController {
