@@ -11,6 +11,7 @@
 @interface MSHomeViewController ()
 
 @property (strong, nonatomic) UISearchController *searchController;
+@property (strong, nonatomic) UIView *defaultStateView;
 @property (strong, nonatomic) NSString *searchTerm;
 
 @end
@@ -30,8 +31,12 @@
         search.searchBar.placeholder = @"Search Movies";
         navItem.searchController = search;
         navItem.title = @"Movearch";
+        self.navigationController.hidesBarsWhenVerticallyCompact = false;
         
         self.definesPresentationContext = YES;
+        
+        UINib *nib = [UINib nibWithNibName:@"DefaultStateTableView" bundle:self.nibBundle];
+        self.defaultStateView = [nib instantiateWithOwner:self options:nil][0];
     }
     return self;
 }
@@ -42,9 +47,7 @@
            forCellReuseIdentifier:@"UITableViewCell"];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
-    UINib *nib = [UINib nibWithNibName:@"DefaultStateTableView" bundle:self.nibBundle];
-    UIView *vi = [nib instantiateWithOwner:self options:nil][0];
-    [self.tableView setBackgroundView:vi];
+    [self.tableView setBackgroundView:self.defaultStateView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -64,12 +67,17 @@
     NSString *searchTerm = self.searchTerm;
     searchTerm = searchBar.text;
     NSLog(@"%@",searchTerm);
+    
+    // Remove the background view
     [self.tableView setBackgroundView:nil];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     // Return to the default empty state of a tableview
     NSLog(@"Cancelled");
+    
+    // Show the default empty state
+    [self.tableView setBackgroundView:self.defaultStateView];
 }
 
 @end
