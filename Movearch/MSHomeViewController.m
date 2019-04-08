@@ -7,6 +7,7 @@
 //
 
 #import "MSHomeViewController.h"
+#import "MSMovieItemStore.h"
 
 @interface MSHomeViewController ()
 
@@ -32,7 +33,6 @@
         navItem.searchController = search;
         navItem.title = @"Movearch";
         self.navigationController.hidesBarsWhenVerticallyCompact = false;
-        
         self.definesPresentationContext = YES;
         
         UINib *nib = [UINib nibWithNibName:@"DefaultStateTableView" bundle:self.nibBundle];
@@ -46,12 +46,27 @@
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"UITableViewCell"];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    [self.tableView setBackgroundView:self.defaultStateView];
+    self.navigationItem.hidesSearchBarWhenScrolling = false;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    self.navigationItem.hidesSearchBarWhenScrolling = true;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    NSUInteger count = [[[MSMovieItemStore sharedStore] allItems] count];
+    
+    if (count < 1) {
+        [self.tableView setBackgroundView:self.defaultStateView];
+    }
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -15,8 +15,43 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Movies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4LJ-LH-F1d">
+                    <rect key="frame" x="150.5" y="437" width="113" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4051437-search-images" translatesAutoresizingMaskIntoConstraints="NO" id="aOz-Fj-4Ea">
+                    <rect key="frame" x="87" y="466" width="240" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="128" id="MpZ-TL-a5g"/>
+                    </constraints>
+                </imageView>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="4LJ-LH-F1d" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="CF1-US-QEU"/>
+                <constraint firstItem="4LJ-LH-F1d" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="RY5-cU-Nww"/>
+                <constraint firstItem="aOz-Fj-4Ea" firstAttribute="centerX" secondItem="4LJ-LH-F1d" secondAttribute="centerX" id="ds6-OV-nFQ"/>
+                <constraint firstItem="4LJ-LH-F1d" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="gjB-bP-sVx"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="aOz-Fj-4Ea" secondAttribute="bottom" constant="268" id="hEn-ir-lAl"/>
+                <constraint firstItem="aOz-Fj-4Ea" firstAttribute="top" secondItem="4LJ-LH-F1d" secondAttribute="bottom" constant="7" id="rBQ-IY-aID"/>
+                <constraint firstItem="aOz-Fj-4Ea" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="87" id="rFe-I0-OVD"/>
+                <constraint firstItem="4LJ-LH-F1d" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vd9-BU-gRi"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kEj-3k-bON">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+            <nil key="textColor"/>
+            <nil key="highlightedColor"/>
+            <point key="canvasLocation" x="47.826086956521742" y="132.92410714285714"/>
+        </label>
     </objects>
+    <resources>
+        <image name="4051437-search-images" width="300" height="300"/>
+    </resources>
 </document>
