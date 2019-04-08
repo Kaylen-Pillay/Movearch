@@ -7,6 +7,7 @@
 //
 
 #import "MSMovieItemStore.h"
+#import "MSMovieItem.h"
 
 @interface MSMovieItemStore ()
 
@@ -44,6 +45,21 @@
     return [self.privateItems copy];
 }
 
+- (void)clear {
+    [self.privateItems removeAllObjects];
+}
+
+- (MSMovieItem *)createMovieItemWithTitle:(NSString *)title year:(NSString *)year imdbID:(NSString *)imdbID type:(NSString *)type posterURL:(NSString *)posterURL {
+    
+    MSMovieItem *item = [[MSMovieItem alloc] initWithTitle:title
+                                                      year:year
+                                                    imdbID:imdbID
+                                                      type:type
+                                                 posterURL:posterURL];
+    
+    [self.privateItems addObject:item];
+    return item;
+}
 
 
 @end
