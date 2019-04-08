@@ -8,6 +8,7 @@
 
 #import "MSHomeViewController.h"
 #import "MSMovieItemStore.h"
+#import "MSMovieItem.h"
 
 @interface MSHomeViewController ()
 
@@ -71,7 +72,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // configure a cell;
-    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"
+                                                            forIndexPath:indexPath];
+    
+    
+    NSArray *movieItems = [[MSMovieItemStore sharedStore] allItems];
+    MSMovieItem *item = movieItems[indexPath.row];
+    
+    [cell.textLabel setText:item.title];
+    [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@ - %@", item.year, item.type]];
+    
+    return cell;
 }
 
 - (void)updateSearchResultsForSearchController:(nonnull UISearchController *)searchController {
