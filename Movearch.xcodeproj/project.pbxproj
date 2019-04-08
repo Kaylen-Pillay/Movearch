@@ -58,6 +58,17 @@
 		64301604225B197000A8C9EA /* Movearch */ = {
 			isa = PBXGroup;
 			children = (
+				6430161C225B19A000A8C9EA /* Models */,
+				6430161D225B19A700A8C9EA /* Views */,
+				6430161E225B19AE00A8C9EA /* Controllers */,
+				6430161B225B198D00A8C9EA /* Default */,
+			);
+			path = Movearch;
+			sourceTree = "<group>";
+		};
+		6430161B225B198D00A8C9EA /* Default */ = {
+			isa = PBXGroup;
+			children = (
 				64301605225B197000A8C9EA /* AppDelegate.h */,
 				64301606225B197000A8C9EA /* AppDelegate.m */,
 				64301608225B197000A8C9EA /* ViewController.h */,
@@ -68,7 +79,28 @@
 				64301613225B197100A8C9EA /* Info.plist */,
 				64301614225B197100A8C9EA /* main.m */,
 			);
-			path = Movearch;
+			name = Default;
+			sourceTree = "<group>";
+		};
+		6430161C225B19A000A8C9EA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		6430161D225B19A700A8C9EA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		6430161E225B19AE00A8C9EA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +318,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Movearch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,6 +335,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Movearch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
