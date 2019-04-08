@@ -40,6 +40,11 @@
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"UITableViewCell"];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    UINib *nib = [UINib nibWithNibName:@"DefaultStateTableView" bundle:self.nibBundle];
+    UIView *vi = [nib instantiateWithOwner:self options:nil][0];
+    [self.tableView setBackgroundView:vi];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -59,6 +64,7 @@
     NSString *searchTerm = self.searchTerm;
     searchTerm = searchBar.text;
     NSLog(@"%@",searchTerm);
+    [self.tableView setBackgroundView:nil];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
