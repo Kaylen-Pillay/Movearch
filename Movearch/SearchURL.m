@@ -21,18 +21,33 @@
 {
     self = [super init];
     if (self) {
-        _baseURL = @"http://www.omdbapi.com/?s=";
+        _baseURL = @"https://www.omdbapi.com/?s=";
         _imdbURL = @"https://www.imdb.com/title/";
     }
     return self;
 }
 
 - (NSURL *)getQueryURL:(NSString *)searchQuery {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@&apikey=%@", _baseURL, searchQuery, APIKey.getApiKey]];
+    NSString *encoded = [searchQuery stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@&apikey=%@", _baseURL, encoded, APIKey.getApiKey]];
 }
 
 - (NSURL *)getIMDBSiteURL:(NSString *)imdbCode {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", _imdbURL, imdbCode]];
+    NSString *encoded = [imdbCode stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", _imdbURL, encoded]];
+}
+
+- (NSString *)httpToHttps:(NSString *)string{
+    return [string stringByReplacingOccurrencesOfString:@"http://" withString:@"https://"];
+}
+
+- (NSString *)getPosterURL:(NSString *)poster {
+    NSString *posterHTTPS = [self httpToHttps:poster];
+    if ([posterHTTPS isEqualToString:@"N/A"]) {
+        return @"https://d994l96tlvogv.cloudfront.net/uploads/film/poster/poster-image-coming-soon-placeholder-all-logos-500-x-740.png";
+    } else {
+        return posterHTTPS;
+    }
 }
 
 @end

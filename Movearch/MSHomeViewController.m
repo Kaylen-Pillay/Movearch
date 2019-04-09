@@ -10,6 +10,7 @@
 #import "MSMovieItemStore.h"
 #import "MSMovieItem.h"
 #import "SearchURL.h"
+#import "DGActivityIndicatorView.h"
 
 @interface MSHomeViewController ()
 
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) NSString *searchTerm;
 @property (nonatomic) NSURLSession *session;
 @property (nonatomic, strong) SearchURL *searchHelper;
+@property (nonatomic, strong) DGActivityIndicatorView *loadingIndicator;
 
 @end
 
@@ -26,6 +28,13 @@
 - (instancetype) init {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
+        NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                   [UIColor whiteColor],NSForegroundColorAttributeName, nil];
+        
+        [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
+        
+        [[UISearchBar appearance] setTintColor:[UIColor whiteColor]];
+        
         UINavigationItem *navItem = self.navigationItem;
         UISearchController *search = self.searchController;
         
@@ -39,7 +48,7 @@
         self.navigationController.hidesBarsWhenVerticallyCompact = false;
         self.definesPresentationContext = YES;
         
-        UINib *nib = [UINib nibWithNibName:@"DefaultStateTableView" bundle:self.nibBundle];
+        UINib *nib = [UINib nibWithNibName:@"NoResultsView" bundle:self.nibBundle];
         self.defaultStateView = [nib instantiateWithOwner:self options:nil][0];
         
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -48,6 +57,10 @@
                                             delegateQueue:nil];
         
         _searchHelper = [[SearchURL alloc] init];
+        
+        _loadingIndicator = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeCookieTerminator
+                                                                tintColor:[UIColor blueColor]
+                                                                     size:20.0f];
     }
     return self;
 }
@@ -73,6 +86,14 @@
     self.navigationItem.hidesSearchBarWhenScrolling = true;
 }
 
+- (void)viewWillLayoutSubviews {
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    float size = 50.0f;
+    CGRect loadingFrame = CGRectMake(bounds.size.width - size, bounds.size.height - size, size, size);
+    
+    _loadingIndicator.frame = loadingFrame;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSUInteger count = [[[MSMovieItemStore sharedStore] allItems] count];
     
@@ -91,7 +112,8 @@
     
     NSArray *movieItems = [[MSMovieItemStore sharedStore] allItems];
     MSMovieItem *item = movieItems[indexPath.row];
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.posterURL]]];
+    NSString *posterHTTPS = [_searchHelper getPosterURL:item.posterURL];
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:posterHTTPS]]];
     
     [cell.textLabel setText:item.title];
     [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@ - %@", item.year, item.type]];
@@ -106,11 +128,15 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSString *searchTerm = self.searchTerm;
     searchTerm = searchBar.text;
-    NSLog(@"%@",searchTerm);
     
-    
+    [[MSMovieItemStore sharedStore] clear];
     [self.tableView reloadData];
-    [self.tableView setBackgroundView:nil];
+    
+    [_loadingIndicator startAnimating];
+    [self.tableView setBackgroundView:_loadingIndicator];
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^{
+        [self fetchFeed:searchTerm];
+    });
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -123,7 +149,40 @@
     NSURL *url = [_searchHelper getQueryURL:queryString];
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     
-    // TODO: Complete the implementation
+    NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:req
+                                                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error)
+    {
+        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data
+                                                                   options:0
+                                                                     error:nil];
+        
+        
+        if (! [jsonObject[@"Response"] isEqual:@"False"]) {
+            NSArray *searchResults = jsonObject[@"Search"];
+            for (int i = 0; i < searchResults.count; i++) {
+                NSDictionary *result = searchResults[i];
+                [[MSMovieItemStore sharedStore] createMovieItemWithTitle:result[@"Title"]
+                                                                    year:result[@"Year"]
+                                                                  imdbID:result[@"imdbID"]
+                                                                    type:result[@"Type"]
+                                                               posterURL:result[@"Poster"]];
+            }
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView setBackgroundView:nil];
+                [self.tableView reloadData];
+            });
+            
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView setBackgroundView:self.defaultStateView];
+                [[MSMovieItemStore sharedStore] clear];
+                [self.tableView reloadData];
+            });
+        }
+    }];
+    
+    [dataTask resume];
 }
 
 @end
