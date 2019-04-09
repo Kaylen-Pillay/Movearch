@@ -18,6 +18,8 @@
 		6430162F225B514700A8C9EA /* MSMovieItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6430162E225B514700A8C9EA /* MSMovieItemStore.m */; };
 		64301633225B7A2600A8C9EA /* APIKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 64301632225B7A2600A8C9EA /* APIKey.m */; };
 		64301636225B7AE000A8C9EA /* SearchURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 64301635225B7AE000A8C9EA /* SearchURL.m */; };
+		64301638225C7E1000A8C9EA /* NoResultsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64301637225C7E1000A8C9EA /* NoResultsView.xib */; };
+		91147BAEEC4AD6B320AC2CBD /* libPods-Movearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAF3E314A1933C7C98A7D8F /* libPods-Movearch.a */; };
 		BE64C8DB225B75B900AAE6B5 /* DefaultStateTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE64C8DA225B75B900AAE6B5 /* DefaultStateTableView.xib */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +44,11 @@
 		64301632225B7A2600A8C9EA /* APIKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIKey.m; sourceTree = "<group>"; };
 		64301634225B7AE000A8C9EA /* SearchURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchURL.h; sourceTree = "<group>"; };
 		64301635225B7AE000A8C9EA /* SearchURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchURL.m; sourceTree = "<group>"; };
+		64301637225C7E1000A8C9EA /* NoResultsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoResultsView.xib; sourceTree = "<group>"; };
 		BE64C8DA225B75B900AAE6B5 /* DefaultStateTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DefaultStateTableView.xib; sourceTree = "<group>"; };
+		DFAF3E314A1933C7C98A7D8F /* libPods-Movearch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Movearch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECE5D2913ED2FDDF97DA2C36 /* Pods-Movearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movearch.release.xcconfig"; path = "Target Support Files/Pods-Movearch/Pods-Movearch.release.xcconfig"; sourceTree = "<group>"; };
+		F1AB2F00061985816E62F7AF /* Pods-Movearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movearch.debug.xcconfig"; path = "Target Support Files/Pods-Movearch/Pods-Movearch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,17 +56,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91147BAEEC4AD6B320AC2CBD /* libPods-Movearch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		021493FAE052505801ABE2C8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F1AB2F00061985816E62F7AF /* Pods-Movearch.debug.xcconfig */,
+				ECE5D2913ED2FDDF97DA2C36 /* Pods-Movearch.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		643015F9225B197000A8C9EA = {
 			isa = PBXGroup;
 			children = (
 				64301604225B197000A8C9EA /* Movearch */,
 				64301603225B197000A8C9EA /* Products */,
+				021493FAE052505801ABE2C8 /* Pods */,
+				AF08CBB3798BB625FA95F87C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				BE64C8DA225B75B900AAE6B5 /* DefaultStateTableView.xib */,
+				64301637225C7E1000A8C9EA /* NoResultsView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -139,6 +158,14 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		AF08CBB3798BB625FA95F87C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DFAF3E314A1933C7C98A7D8F /* libPods-Movearch.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +173,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 64301618225B197100A8C9EA /* Build configuration list for PBXNativeTarget "Movearch" */;
 			buildPhases = (
+				CC1F4471822FF7386E661CE5 /* [CP] Check Pods Manifest.lock */,
 				643015FE225B197000A8C9EA /* Sources */,
 				643015FF225B197000A8C9EA /* Frameworks */,
 				64301600225B197000A8C9EA /* Resources */,
@@ -197,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64301612225B197100A8C9EA /* LaunchScreen.storyboard in Resources */,
+				64301638225C7E1000A8C9EA /* NoResultsView.xib in Resources */,
 				6430160F225B197100A8C9EA /* Assets.xcassets in Resources */,
 				6430160D225B197000A8C9EA /* Main.storyboard in Resources */,
 				BE64C8DB225B75B900AAE6B5 /* DefaultStateTableView.xib in Resources */,
@@ -204,6 +233,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CC1F4471822FF7386E661CE5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Movearch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		643015FE225B197000A8C9EA /* Sources */ = {
@@ -357,10 +411,11 @@
 		};
 		64301619225B197100A8C9EA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1AB2F00061985816E62F7AF /* Pods-Movearch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QP2XU8FY65;
 				INFOPLIST_FILE = Movearch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -374,10 +429,11 @@
 		};
 		6430161A225B197100A8C9EA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECE5D2913ED2FDDF97DA2C36 /* Pods-Movearch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QP2XU8FY65;
 				INFOPLIST_FILE = Movearch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

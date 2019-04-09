@@ -14,7 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSURL *)getQueryURL:(NSString *)searchQuery;
 
-- (NSURL *)getIMDBSiteURL:(NSString *)imdbCode
+- (NSURL *)getIMDBSiteURL:(NSString *)imdbCode;
+
+- (NSString *)getPosterURL:(NSString *)poster;
 
 @end
 
