@@ -10,6 +10,7 @@
 #import "MSMovieItemStore.h"
 #import "MSMovieItem.h"
 #import "SearchURL.h"
+#import "MSMovieTableViewCell.h"
 #import "DGActivityIndicatorView.h"
 
 @interface MSHomeViewController ()
@@ -105,9 +106,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // configure a cell;
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                                   reuseIdentifier:@"UITableViewCell"];
-    
+    MSMovieTableViewCell *cell =(MSMovieTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     
     
     NSArray *movieItems = [[MSMovieItemStore sharedStore] allItems];
@@ -115,10 +114,17 @@
     NSString *posterHTTPS = [_searchHelper getPosterURL:item.posterURL];
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:posterHTTPS]]];
     
-    [cell.textLabel setText:item.title];
-    [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@ - %@", item.year, item.type]];
-    [cell.imageView setImage:image];
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MSMovieTableViewCell" owner:self options:nil];
+    cell = [nib objectAtIndex:0];
+    
+    [cell.titleLabel setText:@"Hello"];
+    [cell.type setText:@"Movie"];
+    [cell.year setText:@"1994"];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Selected!");
 }
 
 - (void)updateSearchResultsForSearchController:(nonnull UISearchController *)searchController {
