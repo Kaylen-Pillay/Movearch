@@ -48,7 +48,7 @@
         self.navigationController.hidesBarsWhenVerticallyCompact = false;
         self.definesPresentationContext = YES;
         
-        UINib *nib = [UINib nibWithNibName:@"NoResultsView" bundle:self.nibBundle];
+        UINib *nib = [UINib nibWithNibName:@"WelcomeView" bundle:self.nibBundle];
         self.defaultStateView = [nib instantiateWithOwner:self options:nil][0];
         
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
