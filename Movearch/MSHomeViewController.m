@@ -22,6 +22,7 @@
 @property (nonatomic, strong) SearchURL *searchHelper;
 @property (nonatomic, strong) DGActivityIndicatorView *loadingIndicator;
 @property (nonatomic, strong) NSCache *imageCache;
+@property (nonatomic, strong) NSCache *searchCache;
 
 @end
 
@@ -66,6 +67,7 @@
                                                                      size:20.0f];
         
         _imageCache = [[NSCache alloc] init];
+        _searchCache = [[NSCache alloc] init];
     }
     return self;
 }
@@ -195,6 +197,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSString *searchTerm = self.searchTerm;
+    _searchTerm = searchBar.text;
     searchTerm = searchBar.text;
     
     [[MSMovieItemStore sharedStore] clear];
@@ -202,9 +205,19 @@
     
     [_loadingIndicator startAnimating];
     [self.tableView setBackgroundView:_loadingIndicator];
-    dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^{
-        [self fetchFeed:searchTerm];
-    });
+    
+    NSArray *prevStore = [_searchCache objectForKey:searchTerm];
+    if (prevStore == nil) {
+        NSLog(@"Never saw this search before!");
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^{
+            [self fetchFeed:searchTerm];
+        });
+    } else {
+        NSLog(@"I've seen this search !!!!!!!!");
+        [[MSMovieItemStore sharedStore] restoreStore:prevStore];
+        [self.tableView setBackgroundView:nil];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -284,7 +297,11 @@
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    if ([[[MSMovieItemStore sharedStore] allItems] count] >= [imdbIDs count] / 2){
+                    if ([[[MSMovieItemStore sharedStore] allItems] count] == [imdbIDs count]) {
+                        [self.tableView setBackgroundView:nil];
+                        [self.tableView reloadData];
+                        [self.searchCache setObject:[[MSMovieItemStore sharedStore] allItems] forKey:self.searchTerm];
+                    } else if ([[[MSMovieItemStore sharedStore] allItems] count] >= [imdbIDs count] / 2){
                         [self.tableView setBackgroundView:nil];
                         [self.tableView reloadData];
                     }

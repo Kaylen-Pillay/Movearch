@@ -67,4 +67,8 @@
     }
 }
 
+- (void) restoreStore:(NSArray *)prevStore {
+    _privateItems = [[NSMutableArray alloc] initWithArray:prevStore];
+}
+
 @end
