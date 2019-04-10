@@ -68,8 +68,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView registerClass:[UITableViewCell class]
-           forCellReuseIdentifier:@"UITableViewCell"];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     
@@ -106,25 +104,32 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // configure a cell;
-    MSMovieTableViewCell *cell =(MSMovieTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    MSMovieTableViewCell *cell = (MSMovieTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MSMovieTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
     
     NSArray *movieItems = [[MSMovieItemStore sharedStore] allItems];
     MSMovieItem *item = movieItems[indexPath.row];
     NSString *posterHTTPS = [_searchHelper getPosterURL:item.posterURL];
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:posterHTTPS]]];
     
-    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MSMovieTableViewCell" owner:self options:nil];
-    cell = [nib objectAtIndex:0];
-    
-    [cell.titleLabel setText:@"Hello"];
-    [cell.type setText:@"Movie"];
-    [cell.year setText:@"1994"];
+    cell.neatLabel.text = item.title;
+    cell.typeLabel.text = item.type;
+    cell.dateLabel.text = item.year;
+    cell.posterImage.image = image;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Selected!");
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 120;
 }
 
 - (void)updateSearchResultsForSearchController:(nonnull UISearchController *)searchController {

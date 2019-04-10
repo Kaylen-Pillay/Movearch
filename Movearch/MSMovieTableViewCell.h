@@ -2,7 +2,7 @@
 //  MSMovieTableViewCell.h
 //  Movearch
 //
-//  Created by Travis Pillay on 2019/04/09.
+//  Created by Travis Pillay on 2019/04/10.
 //  Copyright © 2019 Takealot Grad Team. All rights reserved.
 //
 
@@ -11,13 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MSMovieTableViewCell : UITableViewCell
-
-@property (strong, nonatomic) IBOutlet UIImageView *thumbnailImage;
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *type;
-
-@property (weak, nonatomic) IBOutlet UILabel *year;
-
+@property (weak, nonatomic) IBOutlet UILabel *neatLabel;
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *posterImage;
 
 @end
 
