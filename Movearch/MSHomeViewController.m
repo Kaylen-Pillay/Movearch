@@ -102,6 +102,12 @@
     return count;
 }
 
+- (void)hideIfNA:(UILabel *)view {
+    if ([view.text isEqualToString:@"N/A"]) {
+        view.hidden = YES;
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // configure a cell;
     MSMovieTableViewCell *cell = (MSMovieTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
@@ -117,9 +123,52 @@
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:posterHTTPS]]];
     
     cell.neatLabel.text = item.title;
-    cell.typeLabel.text = item.type;
-    cell.dateLabel.text = item.year;
+    cell.typeLabel.text = item.staring;
+    cell.dateLabel.text = [NSString stringWithFormat:@"Rated: %@", item.rating];
+    cell.runningTime.text = item.runningTime;
+    cell.yearLabel.text = item.year;
+    cell.directorLabel.text = [NSString stringWithFormat:@"Director: %@", item.director];
+    cell.genreLabel.text = [NSString stringWithFormat:@"Genre: %@", item.genre];
+    cell.plotLabel.text = item.plot;
     cell.posterImage.image = image;
+    cell.rottenScore.text = item.rottenScore;
+    
+    // Check if the views need to be hidden
+    [self hideIfNA:cell.typeLabel];
+    [self hideIfNA:cell.plotLabel];
+    [self hideIfNA:cell.typeLabel];
+    [self hideIfNA:cell.runningTime];
+    [self hideIfNA:cell.yearLabel];
+    
+    if ([item.rating isEqualToString:@"N/A"]) {
+        cell.dateLabel.hidden = YES;
+    }
+    
+    if ([item.director isEqualToString:@"N/A"]) {
+        cell.directorLabel.hidden = YES;
+    }
+    
+    if ([item.genre isEqualToString:@"N/A"]) {
+        cell.genreLabel.hidden = YES;
+    }
+    
+    if ([item.rottenScore isEqualToString:@""]) {
+        cell.rottenScore.hidden = YES;
+        cell.rottenImage.hidden = YES;
+    } else {
+        NSString *percentage = [item.rottenScore substringWithRange:NSMakeRange(0, 2)];
+        float percentFloat = [percentage floatValue];
+        
+        if (percentFloat < 50) {
+            cell.rottenImage.image = [UIImage imageNamed:@"rotten_bad"];
+        } else if (percentFloat >= 50 && percentFloat < 90) {
+            cell.rottenImage.image = [UIImage imageNamed:@"rotten"];
+        } else {
+            cell.rottenImage.image = [UIImage imageNamed:@"rotten_good"];
+        }
+    }
+    
+    
     return cell;
 }
 
@@ -129,7 +178,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 120;
+    return 195;
 }
 
 - (void)updateSearchResultsForSearchController:(nonnull UISearchController *)searchController {
@@ -170,20 +219,13 @@
         
         if (! [jsonObject[@"Response"] isEqual:@"False"]) {
             NSArray *searchResults = jsonObject[@"Search"];
+            NSMutableArray *imdbIDs = [[NSMutableArray alloc] init];
             for (int i = 0; i < searchResults.count; i++) {
                 NSDictionary *result = searchResults[i];
-                [[MSMovieItemStore sharedStore] createMovieItemWithTitle:result[@"Title"]
-                                                                    year:result[@"Year"]
-                                                                  imdbID:result[@"imdbID"]
-                                                                    type:result[@"Type"]
-                                                               posterURL:result[@"Poster"]];
+                [imdbIDs addObject:result[@"imdbID"]];
             }
 
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView setBackgroundView:nil];
-                [self.tableView reloadData];
-            });
-            
+            [self searchMovies:imdbIDs];
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView setBackgroundView:self.defaultStateView];
@@ -195,5 +237,64 @@
     
     [dataTask resume];
 }
+
+- (void) searchMovies:(NSArray *)imdbIDs {
+    for (int i = 0; i < imdbIDs.count; i++) {
+        NSString *imdbID = [imdbIDs objectAtIndex:i];
+        NSURL *url = [_searchHelper getDetailsURL:imdbID];
+        NSURLRequest *req = [NSURLRequest requestWithURL:url];
+        
+        NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:req
+                                                         completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error)
+        {
+            NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data
+                                                                       options:0
+                                                                         error:nil];
+            
+            if (! [jsonObject[@"Response"] isEqual:@"False"]) {
+                MSMovieItem *item = [[MSMovieItemStore sharedStore]
+                                     createMovieItemWithTitle:jsonObject[@"Title"]
+                                     year:jsonObject[@"Year"]
+                                     imdbID:jsonObject[@"imdbID"]
+                                       type:jsonObject[@"Type"]
+                                  posterURL:jsonObject[@"Poster"]];
+                
+                item.director = jsonObject[@"Director"];
+                item.genre = jsonObject[@"Genre"];
+                item.plot = jsonObject[@"Plot"];
+                item.staring = jsonObject[@"Actors"];
+                item.rating = jsonObject[@"Rated"];
+                item.runningTime = jsonObject[@"Runtime"];
+                
+                NSArray *ratingSources = jsonObject[@"Ratings"];
+                item.rottenScore = @"";
+                for (int i = 0; i < ratingSources.count; i++) {
+                    NSString *source = ratingSources[i][@"Source"];
+                    if ([source isEqualToString:@"Rotten Tomatoes"]) {
+                        item.rottenScore = ratingSources[i][@"Value"];
+                    }
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([[[MSMovieItemStore sharedStore] allItems] count] >= [imdbIDs count] / 2){
+                        [self.tableView setBackgroundView:nil];
+                        [self.tableView reloadData];
+                    }
+                });
+            }else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView setBackgroundView:self.defaultStateView];
+                    [[MSMovieItemStore sharedStore] clear];
+                    [self.tableView reloadData];
+                });
+            }
+            
+            
+        }];
+        
+        [dataTask resume];
+    }
+}
+
 
 @end

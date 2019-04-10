@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)getPosterURL:(NSString *)poster;
 
+- (NSURL *)getDetailsURL:(NSString *)imdbID;
+
 @end
 
 NS_ASSUME_NONNULL_END
