@@ -17,6 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *imdbID;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *posterURL;
+@property (nonatomic, strong) NSString *director;
+@property (nonatomic, strong) NSString *plot;
+@property (nonatomic, strong) NSString *staring;
+@property (nonatomic, strong) NSString *rottenScore;
+@property (nonatomic, strong) NSString *genre;
+@property (nonatomic, strong) NSString *runningTime;
+@property (nonatomic, strong) NSString *rating;
 
 - (instancetype) initWithTitle:(NSString *)title
                           year:(NSString *)year
