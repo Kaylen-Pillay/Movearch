@@ -19,6 +19,8 @@
 		64301633225B7A2600A8C9EA /* APIKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 64301632225B7A2600A8C9EA /* APIKey.m */; };
 		64301636225B7AE000A8C9EA /* SearchURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 64301635225B7AE000A8C9EA /* SearchURL.m */; };
 		64301638225C7E1000A8C9EA /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64301637225C7E1000A8C9EA /* WelcomeView.xib */; };
+		64301641225DA2CA00A8C9EA /* MSMovieTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6430163F225DA2CA00A8C9EA /* MSMovieTableViewCell.m */; };
+		64301642225DA2CA00A8C9EA /* MSMovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64301640225DA2CA00A8C9EA /* MSMovieTableViewCell.xib */; };
 		91147BAEEC4AD6B320AC2CBD /* libPods-Movearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAF3E314A1933C7C98A7D8F /* libPods-Movearch.a */; };
 		BE64C8DB225B75B900AAE6B5 /* DefaultStateTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE64C8DA225B75B900AAE6B5 /* DefaultStateTableView.xib */; };
 /* End PBXBuildFile section */
@@ -45,6 +47,9 @@
 		64301634225B7AE000A8C9EA /* SearchURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchURL.h; sourceTree = "<group>"; };
 		64301635225B7AE000A8C9EA /* SearchURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchURL.m; sourceTree = "<group>"; };
 		64301637225C7E1000A8C9EA /* WelcomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
+		6430163E225DA2CA00A8C9EA /* MSMovieTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSMovieTableViewCell.h; sourceTree = "<group>"; };
+		6430163F225DA2CA00A8C9EA /* MSMovieTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSMovieTableViewCell.m; sourceTree = "<group>"; };
+		64301640225DA2CA00A8C9EA /* MSMovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MSMovieTableViewCell.xib; sourceTree = "<group>"; };
 		BE64C8DA225B75B900AAE6B5 /* DefaultStateTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DefaultStateTableView.xib; sourceTree = "<group>"; };
 		DFAF3E314A1933C7C98A7D8F /* libPods-Movearch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Movearch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE5D2913ED2FDDF97DA2C36 /* Pods-Movearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movearch.release.xcconfig"; path = "Target Support Files/Pods-Movearch/Pods-Movearch.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +137,7 @@
 		6430161D225B19A700A8C9EA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				64301640225DA2CA00A8C9EA /* MSMovieTableViewCell.xib */,
 				BE64C8DA225B75B900AAE6B5 /* DefaultStateTableView.xib */,
 				64301637225C7E1000A8C9EA /* WelcomeView.xib */,
 			);
@@ -143,6 +149,8 @@
 			children = (
 				6430161F225B1F7C00A8C9EA /* MSHomeViewController.h */,
 				64301620225B1F7C00A8C9EA /* MSHomeViewController.m */,
+				6430163E225DA2CA00A8C9EA /* MSMovieTableViewCell.h */,
+				6430163F225DA2CA00A8C9EA /* MSMovieTableViewCell.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -226,6 +234,7 @@
 			files = (
 				64301612225B197100A8C9EA /* LaunchScreen.storyboard in Resources */,
 				64301638225C7E1000A8C9EA /* WelcomeView.xib in Resources */,
+				64301642225DA2CA00A8C9EA /* MSMovieTableViewCell.xib in Resources */,
 				6430160F225B197100A8C9EA /* Assets.xcassets in Resources */,
 				6430160D225B197000A8C9EA /* Main.storyboard in Resources */,
 				BE64C8DB225B75B900AAE6B5 /* DefaultStateTableView.xib in Resources */,
@@ -268,6 +277,7 @@
 				64301622225B1F7C00A8C9EA /* MSHomeViewController.m in Sources */,
 				64301615225B197100A8C9EA /* main.m in Sources */,
 				64301633225B7A2600A8C9EA /* APIKey.m in Sources */,
+				64301641225DA2CA00A8C9EA /* MSMovieTableViewCell.m in Sources */,
 				6430162F225B514700A8C9EA /* MSMovieItemStore.m in Sources */,
 				6430162C225B4E0000A8C9EA /* MSMovieItem.m in Sources */,
 				64301607225B197000A8C9EA /* AppDelegate.m in Sources */,
