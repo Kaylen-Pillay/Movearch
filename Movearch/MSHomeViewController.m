@@ -170,20 +170,13 @@
         
         if (! [jsonObject[@"Response"] isEqual:@"False"]) {
             NSArray *searchResults = jsonObject[@"Search"];
+            NSMutableArray *imdbIDs = [[NSMutableArray alloc] init];
             for (int i = 0; i < searchResults.count; i++) {
                 NSDictionary *result = searchResults[i];
-                [[MSMovieItemStore sharedStore] createMovieItemWithTitle:result[@"Title"]
-                                                                    year:result[@"Year"]
-                                                                  imdbID:result[@"imdbID"]
-                                                                    type:result[@"Type"]
-                                                               posterURL:result[@"Poster"]];
+                [imdbIDs addObject:result[@"imdbID"]];
             }
 
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView setBackgroundView:nil];
-                [self.tableView reloadData];
-            });
-            
+            [self searchMovies:imdbIDs];
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView setBackgroundView:self.defaultStateView];
@@ -194,6 +187,45 @@
     }];
     
     [dataTask resume];
+}
+
+- (void) searchMovies:(NSArray *)imdbIDs {
+    for (int i = 0; i < imdbIDs.count; i++) {
+        NSString *imdbID = [imdbIDs objectAtIndex:i];
+        NSURL *url = [_searchHelper getDetailsURL:imdbID];
+        NSURLRequest *req = [NSURLRequest requestWithURL:url];
+        
+        NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:req
+                                                         completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error)
+        {
+            NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data
+                                                                       options:0
+                                                                         error:nil];
+            
+            if (! [jsonObject[@"Response"] isEqual:@"False"]) {
+                [[MSMovieItemStore sharedStore] createMovieItemWithTitle:jsonObject[@"Title"]
+                                                                    year:jsonObject[@"Year"]
+                                                                  imdbID:jsonObject[@"imdbID"]
+                                                                    type:jsonObject[@"Type"]
+                                                               posterURL:jsonObject[@"Poster"]];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView setBackgroundView:nil];
+                    [self.tableView reloadData];
+                });
+            }else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView setBackgroundView:self.defaultStateView];
+                    [[MSMovieItemStore sharedStore] clear];
+                    [self.tableView reloadData];
+                });
+            }
+            
+            
+        }];
+        
+        [dataTask resume];
+    }
 }
 
 @end

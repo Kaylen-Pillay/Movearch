@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) NSString *baseURL;
 @property (nonatomic, strong) NSString *imdbURL;
+@property (nonatomic, strong) NSString *detailsURL;
 
 @end
 @implementation SearchURL
@@ -23,6 +24,7 @@
     if (self) {
         _baseURL = @"https://www.omdbapi.com/?s=";
         _imdbURL = @"https://www.imdb.com/title/";
+        _detailsURL = @"https://www.omdbapi.com/?i=";
     }
     return self;
 }
@@ -30,6 +32,11 @@
 - (NSURL *)getQueryURL:(NSString *)searchQuery {
     NSString *encoded = [searchQuery stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@&apikey=%@", _baseURL, encoded, APIKey.getApiKey]];
+}
+
+- (NSURL *)getDetailsURL:(NSString *)imdbID {
+    NSString *encoded = [imdbID stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@&apikey=%@", _detailsURL, encoded, APIKey.getApiKey]];
 }
 
 - (NSURL *)getIMDBSiteURL:(NSString *)imdbCode {
