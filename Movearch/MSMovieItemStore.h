@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
                                      type:(NSString *) type
                                 posterURL:(NSString *) posterURL;
 
+- (void)restoreStore:(NSArray *)prevStore;
+
 - (void)clear;
 
 
