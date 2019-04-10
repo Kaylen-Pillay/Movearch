@@ -21,6 +21,7 @@
 @property (nonatomic) NSURLSession *session;
 @property (nonatomic, strong) SearchURL *searchHelper;
 @property (nonatomic, strong) DGActivityIndicatorView *loadingIndicator;
+@property (nonatomic, strong) NSCache *imageCache;
 
 @end
 
@@ -29,6 +30,7 @@
 - (instancetype) init {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
+        
         NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                                    [UIColor whiteColor],NSForegroundColorAttributeName, nil];
         
@@ -62,6 +64,8 @@
         _loadingIndicator = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeCookieTerminator
                                                                 tintColor:[UIColor blueColor]
                                                                      size:20.0f];
+        
+        _imageCache = [[NSCache alloc] init];
     }
     return self;
 }
@@ -120,7 +124,11 @@
     NSArray *movieItems = [[MSMovieItemStore sharedStore] allItems];
     MSMovieItem *item = movieItems[indexPath.row];
     NSString *posterHTTPS = [_searchHelper getPosterURL:item.posterURL];
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:posterHTTPS]]];
+    UIImage *image = [[self imageCache] objectForKey:posterHTTPS];
+    if (!image) {
+        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:posterHTTPS]]];
+        [[self imageCache] setObject:image forKey:posterHTTPS];
+    }
     
     cell.neatLabel.text = item.title;
     cell.typeLabel.text = item.staring;
