@@ -23,6 +23,7 @@
 @property (nonatomic, strong) DGActivityIndicatorView *loadingIndicator;
 @property (nonatomic, strong) NSCache *imageCache;
 @property (nonatomic, strong) NSCache *searchCache;
+@property (nonatomic, strong) UISearchBar *searchBar;
 
 @end
 
@@ -52,8 +53,9 @@
         search.searchResultsUpdater = self;
         search.searchBar.delegate = self;
         search.searchBar.placeholder = @"Search Movies";
-        search.searchBar.showsBookmarkButton=YES;
-        
+        search.searchBar.showsBookmarkButton=NO;
+        _searchBar = search.searchBar;
+
         navItem.searchController = search;
         navItem.title = @"Movearch";
         navItem.leftBarButtonItem = bbi;
@@ -226,6 +228,7 @@
         [[MSMovieItemStore sharedStore] restoreStore:prevStore];
         [self.tableView setBackgroundView:nil];
         [self.tableView reloadData];
+        self.searchBar.showsBookmarkButton = YES;
     }
 }
 
@@ -233,6 +236,14 @@
     [[MSMovieItemStore sharedStore] clear];
     [self.tableView reloadData];
     [self.tableView setBackgroundView:self.defaultStateView];
+    self.searchBar.showsBookmarkButton = NO;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if ([searchText length] == 0) {
+        self.searchBar.showsBookmarkButton = NO;
+    }
 }
 
 - (void)fetchFeed:(NSString *)queryString {
@@ -306,6 +317,7 @@
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    self.searchBar.showsBookmarkButton = YES;
                     if ([[[MSMovieItemStore sharedStore] allItems] count] == [imdbIDs count]) {
                         [self.tableView setBackgroundView:nil];
                         [self.tableView reloadData];
