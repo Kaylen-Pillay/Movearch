@@ -141,6 +141,7 @@
     if (!image) {
         image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:posterHTTPS]]];
         
+        // Poster URL is broken, default to the standard poster URL.
         if (!image) {
             image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: _searchHelper.defaultPosterURL]]];
         }
@@ -208,7 +209,8 @@
 }
 
 - (void)updateSearchResultsForSearchController:(nonnull UISearchController *)searchController {
-    
+    // do nothing
+    return;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
