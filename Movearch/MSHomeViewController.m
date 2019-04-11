@@ -39,6 +39,11 @@
         
         [[UISearchBar appearance] setTintColor:[UIColor whiteColor]];
         
+        UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
+                                                                             target:self
+                                                                             action:@selector(viewBookmarks:)];
+
+        
         UINavigationItem *navItem = self.navigationItem;
         UISearchController *search = self.searchController;
         
@@ -47,8 +52,12 @@
         search.searchResultsUpdater = self;
         search.searchBar.delegate = self;
         search.searchBar.placeholder = @"Search Movies";
+        search.searchBar.showsBookmarkButton=YES;
+        
         navItem.searchController = search;
         navItem.title = @"Movearch";
+        navItem.leftBarButtonItem = bbi;
+        
         self.navigationController.hidesBarsWhenVerticallyCompact = false;
         self.definesPresentationContext = YES;
         
@@ -321,5 +330,12 @@
     }
 }
 
+- (void)viewBookmarks:(id)sender {
+    NSLog(@"View your book marks");
+}
+
+- (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"Bookmark this search - %@", searchBar.text);
+}
 
 @end
