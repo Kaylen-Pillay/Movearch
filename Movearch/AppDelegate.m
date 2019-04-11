@@ -22,7 +22,7 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
     
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.45 green:0.44 blue:0.88 alpha:1]];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor yellowColor]];
 
     [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setDefaultTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
