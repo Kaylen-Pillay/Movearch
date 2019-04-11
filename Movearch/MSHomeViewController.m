@@ -140,6 +140,11 @@
     UIImage *image = [[self imageCache] objectForKey:posterHTTPS];
     if (!image) {
         image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:posterHTTPS]]];
+        
+        if (!image) {
+            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: _searchHelper.defaultPosterURL]]];
+        }
+        
         [[self imageCache] setObject:image forKey:posterHTTPS];
     }
     
@@ -272,6 +277,7 @@
                 [self.tableView setBackgroundView:self.defaultStateView];
                 [[MSMovieItemStore sharedStore] clear];
                 [self.tableView reloadData];
+                self.searchBar.showsBookmarkButton = NO;
             });
         }
     }];
@@ -332,6 +338,7 @@
                     [self.tableView setBackgroundView:self.defaultStateView];
                     [[MSMovieItemStore sharedStore] clear];
                     [self.tableView reloadData];
+                    self.searchBar.showsBookmarkButton = NO;
                 });
             }
             
