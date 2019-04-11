@@ -25,6 +25,7 @@
         _baseURL = @"https://www.omdbapi.com/?s=";
         _imdbURL = @"https://www.imdb.com/title/";
         _detailsURL = @"https://www.omdbapi.com/?i=";
+        _defaultPosterURL = @"https://d994l96tlvogv.cloudfront.net/uploads/film/poster/poster-image-coming-soon-placeholder-all-logos-500-x-740.png";
     }
     return self;
 }

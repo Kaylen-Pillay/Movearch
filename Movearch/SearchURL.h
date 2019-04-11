@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SearchURL : NSObject
 
+@property (nonatomic, strong) NSString *defaultPosterURL;
+
 - (NSURL *)getQueryURL:(NSString *)searchQuery;
 
 - (NSURL *)getIMDBSiteURL:(NSString *)imdbCode;

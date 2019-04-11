@@ -23,6 +23,7 @@
 @property (nonatomic, strong) DGActivityIndicatorView *loadingIndicator;
 @property (nonatomic, strong) NSCache *imageCache;
 @property (nonatomic, strong) NSCache *searchCache;
+@property (nonatomic, strong) UISearchBar *searchBar;
 
 @end
 
@@ -39,6 +40,11 @@
         
         [[UISearchBar appearance] setTintColor:[UIColor whiteColor]];
         
+        UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
+                                                                             target:self
+                                                                             action:@selector(viewBookmarks:)];
+
+        
         UINavigationItem *navItem = self.navigationItem;
         UISearchController *search = self.searchController;
         
@@ -47,8 +53,13 @@
         search.searchResultsUpdater = self;
         search.searchBar.delegate = self;
         search.searchBar.placeholder = @"Search Movies";
+        search.searchBar.showsBookmarkButton=NO;
+        _searchBar = search.searchBar;
+
         navItem.searchController = search;
         navItem.title = @"Movearch";
+        navItem.leftBarButtonItem = bbi;
+        
         self.navigationController.hidesBarsWhenVerticallyCompact = false;
         self.definesPresentationContext = YES;
         
@@ -129,6 +140,12 @@
     UIImage *image = [[self imageCache] objectForKey:posterHTTPS];
     if (!image) {
         image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:posterHTTPS]]];
+        
+        // Poster URL is broken, default to the standard poster URL.
+        if (!image) {
+            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: _searchHelper.defaultPosterURL]]];
+        }
+        
         [[self imageCache] setObject:image forKey:posterHTTPS];
     }
     
@@ -192,7 +209,8 @@
 }
 
 - (void)updateSearchResultsForSearchController:(nonnull UISearchController *)searchController {
-    
+    // do nothing
+    return;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -217,6 +235,7 @@
         [[MSMovieItemStore sharedStore] restoreStore:prevStore];
         [self.tableView setBackgroundView:nil];
         [self.tableView reloadData];
+        self.searchBar.showsBookmarkButton = YES;
     }
 }
 
@@ -224,6 +243,14 @@
     [[MSMovieItemStore sharedStore] clear];
     [self.tableView reloadData];
     [self.tableView setBackgroundView:self.defaultStateView];
+    self.searchBar.showsBookmarkButton = NO;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if ([searchText length] == 0) {
+        self.searchBar.showsBookmarkButton = NO;
+    }
 }
 
 - (void)fetchFeed:(NSString *)queryString {
@@ -252,6 +279,7 @@
                 [self.tableView setBackgroundView:self.defaultStateView];
                 [[MSMovieItemStore sharedStore] clear];
                 [self.tableView reloadData];
+                self.searchBar.showsBookmarkButton = NO;
             });
         }
     }];
@@ -297,6 +325,7 @@
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    self.searchBar.showsBookmarkButton = YES;
                     if ([[[MSMovieItemStore sharedStore] allItems] count] == [imdbIDs count]) {
                         [self.tableView setBackgroundView:nil];
                         [self.tableView reloadData];
@@ -311,6 +340,7 @@
                     [self.tableView setBackgroundView:self.defaultStateView];
                     [[MSMovieItemStore sharedStore] clear];
                     [self.tableView reloadData];
+                    self.searchBar.showsBookmarkButton = NO;
                 });
             }
             
@@ -321,5 +351,12 @@
     }
 }
 
+- (void)viewBookmarks:(id)sender {
+    NSLog(@"View your book marks");
+}
+
+- (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"Bookmark this search - %@", searchBar.text);
+}
 
 @end
