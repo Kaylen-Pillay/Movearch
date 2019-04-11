@@ -12,6 +12,7 @@
 #import "SearchURL.h"
 #import "MSMovieTableViewCell.h"
 #import "DGActivityIndicatorView.h"
+#import "BookmarksTableViewController.h"
 
 @interface MSHomeViewController ()
 
@@ -352,7 +353,8 @@
 }
 
 - (void)viewBookmarks:(id)sender {
-    NSLog(@"View your book marks");
+    BookmarksTableViewController *bvc = [[BookmarksTableViewController alloc] init];
+    [self.navigationController pushViewController:bvc animated:YES];
 }
 
 - (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar {
