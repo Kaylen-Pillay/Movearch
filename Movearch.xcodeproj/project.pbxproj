@@ -13,6 +13,18 @@
 		6430160F225B197100A8C9EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6430160E225B197100A8C9EA /* Assets.xcassets */; };
 		64301612225B197100A8C9EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64301610225B197100A8C9EA /* LaunchScreen.storyboard */; };
 		64301615225B197100A8C9EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64301614225B197100A8C9EA /* main.m */; };
+		64301622225B1F7C00A8C9EA /* MSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64301620225B1F7C00A8C9EA /* MSHomeViewController.m */; };
+		6430162C225B4E0000A8C9EA /* MSMovieItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6430162B225B4E0000A8C9EA /* MSMovieItem.m */; };
+		6430162F225B514700A8C9EA /* MSMovieItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6430162E225B514700A8C9EA /* MSMovieItemStore.m */; };
+		64301633225B7A2600A8C9EA /* APIKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 64301632225B7A2600A8C9EA /* APIKey.m */; };
+		64301636225B7AE000A8C9EA /* SearchURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 64301635225B7AE000A8C9EA /* SearchURL.m */; };
+		64301638225C7E1000A8C9EA /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64301637225C7E1000A8C9EA /* WelcomeView.xib */; };
+		64301641225DA2CA00A8C9EA /* MSMovieTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6430163F225DA2CA00A8C9EA /* MSMovieTableViewCell.m */; };
+		64301642225DA2CA00A8C9EA /* MSMovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64301640225DA2CA00A8C9EA /* MSMovieTableViewCell.xib */; };
+		644D74BB225F28C3006731E5 /* BookmarksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644D74BA225F28C3006731E5 /* BookmarksTableViewController.m */; };
+		644D74BE225F400A006731E5 /* MSBookmarkStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 644D74BD225F400A006731E5 /* MSBookmarkStore.m */; };
+		644D74C122604FE2006731E5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 644D74BF22604FE2006731E5 /* Model.xcdatamodeld */; };
+		91147BAEEC4AD6B320AC2CBD /* libPods-Movearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAF3E314A1933C7C98A7D8F /* libPods-Movearch.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +38,28 @@
 		64301611225B197100A8C9EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64301613225B197100A8C9EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64301614225B197100A8C9EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6430161F225B1F7C00A8C9EA /* MSHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSHomeViewController.h; sourceTree = "<group>"; };
+		64301620225B1F7C00A8C9EA /* MSHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSHomeViewController.m; sourceTree = "<group>"; };
+		6430162A225B4E0000A8C9EA /* MSMovieItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSMovieItem.h; sourceTree = "<group>"; };
+		6430162B225B4E0000A8C9EA /* MSMovieItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSMovieItem.m; sourceTree = "<group>"; };
+		6430162D225B514700A8C9EA /* MSMovieItemStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSMovieItemStore.h; sourceTree = "<group>"; };
+		6430162E225B514700A8C9EA /* MSMovieItemStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSMovieItemStore.m; sourceTree = "<group>"; };
+		64301631225B7A2600A8C9EA /* APIKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIKey.h; sourceTree = "<group>"; };
+		64301632225B7A2600A8C9EA /* APIKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIKey.m; sourceTree = "<group>"; };
+		64301634225B7AE000A8C9EA /* SearchURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchURL.h; sourceTree = "<group>"; };
+		64301635225B7AE000A8C9EA /* SearchURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchURL.m; sourceTree = "<group>"; };
+		64301637225C7E1000A8C9EA /* WelcomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
+		6430163E225DA2CA00A8C9EA /* MSMovieTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSMovieTableViewCell.h; sourceTree = "<group>"; };
+		6430163F225DA2CA00A8C9EA /* MSMovieTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSMovieTableViewCell.m; sourceTree = "<group>"; };
+		64301640225DA2CA00A8C9EA /* MSMovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MSMovieTableViewCell.xib; sourceTree = "<group>"; };
+		644D74B9225F28C3006731E5 /* BookmarksTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookmarksTableViewController.h; sourceTree = "<group>"; };
+		644D74BA225F28C3006731E5 /* BookmarksTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookmarksTableViewController.m; sourceTree = "<group>"; };
+		644D74BC225F400A006731E5 /* MSBookmarkStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSBookmarkStore.h; sourceTree = "<group>"; };
+		644D74BD225F400A006731E5 /* MSBookmarkStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSBookmarkStore.m; sourceTree = "<group>"; };
+		644D74C022604FE2006731E5 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		DFAF3E314A1933C7C98A7D8F /* libPods-Movearch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Movearch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECE5D2913ED2FDDF97DA2C36 /* Pods-Movearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movearch.release.xcconfig"; path = "Target Support Files/Pods-Movearch/Pods-Movearch.release.xcconfig"; sourceTree = "<group>"; };
+		F1AB2F00061985816E62F7AF /* Pods-Movearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movearch.debug.xcconfig"; path = "Target Support Files/Pods-Movearch/Pods-Movearch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +67,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91147BAEEC4AD6B320AC2CBD /* libPods-Movearch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		021493FAE052505801ABE2C8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F1AB2F00061985816E62F7AF /* Pods-Movearch.debug.xcconfig */,
+				ECE5D2913ED2FDDF97DA2C36 /* Pods-Movearch.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		643015F9225B197000A8C9EA = {
 			isa = PBXGroup;
 			children = (
 				64301604225B197000A8C9EA /* Movearch */,
 				64301603225B197000A8C9EA /* Products */,
+				021493FAE052505801ABE2C8 /* Pods */,
+				AF08CBB3798BB625FA95F87C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +104,7 @@
 		64301604225B197000A8C9EA /* Movearch */ = {
 			isa = PBXGroup;
 			children = (
+				64301630225B7A0C00A8C9EA /* Helpers */,
 				6430161C225B19A000A8C9EA /* Models */,
 				6430161D225B19A700A8C9EA /* Views */,
 				6430161E225B19AE00A8C9EA /* Controllers */,
@@ -85,6 +132,13 @@
 		6430161C225B19A000A8C9EA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6430162A225B4E0000A8C9EA /* MSMovieItem.h */,
+				6430162B225B4E0000A8C9EA /* MSMovieItem.m */,
+				6430162D225B514700A8C9EA /* MSMovieItemStore.h */,
+				6430162E225B514700A8C9EA /* MSMovieItemStore.m */,
+				644D74BC225F400A006731E5 /* MSBookmarkStore.h */,
+				644D74BD225F400A006731E5 /* MSBookmarkStore.m */,
+				644D74BF22604FE2006731E5 /* Model.xcdatamodeld */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -92,6 +146,8 @@
 		6430161D225B19A700A8C9EA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				64301640225DA2CA00A8C9EA /* MSMovieTableViewCell.xib */,
+				64301637225C7E1000A8C9EA /* WelcomeView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -99,8 +155,33 @@
 		6430161E225B19AE00A8C9EA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6430161F225B1F7C00A8C9EA /* MSHomeViewController.h */,
+				64301620225B1F7C00A8C9EA /* MSHomeViewController.m */,
+				6430163E225DA2CA00A8C9EA /* MSMovieTableViewCell.h */,
+				6430163F225DA2CA00A8C9EA /* MSMovieTableViewCell.m */,
+				644D74B9225F28C3006731E5 /* BookmarksTableViewController.h */,
+				644D74BA225F28C3006731E5 /* BookmarksTableViewController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		64301630225B7A0C00A8C9EA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				64301631225B7A2600A8C9EA /* APIKey.h */,
+				64301632225B7A2600A8C9EA /* APIKey.m */,
+				64301634225B7AE000A8C9EA /* SearchURL.h */,
+				64301635225B7AE000A8C9EA /* SearchURL.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		AF08CBB3798BB625FA95F87C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DFAF3E314A1933C7C98A7D8F /* libPods-Movearch.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,6 +191,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 64301618225B197100A8C9EA /* Build configuration list for PBXNativeTarget "Movearch" */;
 			buildPhases = (
+				CC1F4471822FF7386E661CE5 /* [CP] Check Pods Manifest.lock */,
 				643015FE225B197000A8C9EA /* Sources */,
 				643015FF225B197000A8C9EA /* Frameworks */,
 				64301600225B197000A8C9EA /* Resources */,
@@ -161,6 +243,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				64301612225B197100A8C9EA /* LaunchScreen.storyboard in Resources */,
+				64301638225C7E1000A8C9EA /* WelcomeView.xib in Resources */,
+				64301642225DA2CA00A8C9EA /* MSMovieTableViewCell.xib in Resources */,
 				6430160F225B197100A8C9EA /* Assets.xcassets in Resources */,
 				6430160D225B197000A8C9EA /* Main.storyboard in Resources */,
 			);
@@ -168,14 +252,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CC1F4471822FF7386E661CE5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Movearch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		643015FE225B197000A8C9EA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				6430160A225B197000A8C9EA /* ViewController.m in Sources */,
+				64301622225B1F7C00A8C9EA /* MSHomeViewController.m in Sources */,
 				64301615225B197100A8C9EA /* main.m in Sources */,
+				64301633225B7A2600A8C9EA /* APIKey.m in Sources */,
+				64301641225DA2CA00A8C9EA /* MSMovieTableViewCell.m in Sources */,
+				644D74BE225F400A006731E5 /* MSBookmarkStore.m in Sources */,
+				6430162F225B514700A8C9EA /* MSMovieItemStore.m in Sources */,
+				6430162C225B4E0000A8C9EA /* MSMovieItem.m in Sources */,
+				644D74BB225F28C3006731E5 /* BookmarksTableViewController.m in Sources */,
 				64301607225B197000A8C9EA /* AppDelegate.m in Sources */,
+				64301636225B7AE000A8C9EA /* SearchURL.m in Sources */,
+				644D74C122604FE2006731E5 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,10 +433,11 @@
 		};
 		64301619225B197100A8C9EA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1AB2F00061985816E62F7AF /* Pods-Movearch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QP2XU8FY65;
 				INFOPLIST_FILE = Movearch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -332,10 +451,11 @@
 		};
 		6430161A225B197100A8C9EA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECE5D2913ED2FDDF97DA2C36 /* Pods-Movearch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QP2XU8FY65;
 				INFOPLIST_FILE = Movearch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -369,6 +489,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		644D74BF22604FE2006731E5 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				644D74C022604FE2006731E5 /* Model.xcdatamodel */,
+			);
+			currentVersion = 644D74C022604FE2006731E5 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 643015FA225B197000A8C9EA /* Project object */;
 }
