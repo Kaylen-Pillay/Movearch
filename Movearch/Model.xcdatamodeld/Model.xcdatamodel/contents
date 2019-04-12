@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="BookmarkBankEntity" representedClassName="BookmarkBankEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="bookmark_query" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="BookmarkBankEntity" positionX="-54" positionY="0" width="128" height="60"/>
+    </elements>
+</model>
