@@ -9,6 +9,9 @@
 #import "MSMovieItemStore.h"
 #import "MSMovieItem.h"
 
+// Import AppDelegate to get access to it.
+// #import "AppDelegate.h"
+
 @interface MSMovieItemStore ()
 
 @property (nonatomic) NSMutableArray *privateItems;
@@ -22,6 +25,9 @@
     
     if (!sharedStore) {
         sharedStore = [[self alloc] initPrivate];
+        
+        // Getting access to the app delegate.
+        // AppDelegate *app = (AppDelegate *) [UIApplication sharedApplication].delegate;
     }
     
     return sharedStore;

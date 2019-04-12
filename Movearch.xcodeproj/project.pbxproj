@@ -22,6 +22,8 @@
 		64301641225DA2CA00A8C9EA /* MSMovieTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6430163F225DA2CA00A8C9EA /* MSMovieTableViewCell.m */; };
 		64301642225DA2CA00A8C9EA /* MSMovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64301640225DA2CA00A8C9EA /* MSMovieTableViewCell.xib */; };
 		644D74BB225F28C3006731E5 /* BookmarksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644D74BA225F28C3006731E5 /* BookmarksTableViewController.m */; };
+		644D74BE225F400A006731E5 /* MSBookmarkStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 644D74BD225F400A006731E5 /* MSBookmarkStore.m */; };
+		644D74C122604FE2006731E5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 644D74BF22604FE2006731E5 /* Model.xcdatamodeld */; };
 		91147BAEEC4AD6B320AC2CBD /* libPods-Movearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAF3E314A1933C7C98A7D8F /* libPods-Movearch.a */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +54,9 @@
 		64301640225DA2CA00A8C9EA /* MSMovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MSMovieTableViewCell.xib; sourceTree = "<group>"; };
 		644D74B9225F28C3006731E5 /* BookmarksTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookmarksTableViewController.h; sourceTree = "<group>"; };
 		644D74BA225F28C3006731E5 /* BookmarksTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookmarksTableViewController.m; sourceTree = "<group>"; };
+		644D74BC225F400A006731E5 /* MSBookmarkStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSBookmarkStore.h; sourceTree = "<group>"; };
+		644D74BD225F400A006731E5 /* MSBookmarkStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSBookmarkStore.m; sourceTree = "<group>"; };
+		644D74C022604FE2006731E5 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DFAF3E314A1933C7C98A7D8F /* libPods-Movearch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Movearch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE5D2913ED2FDDF97DA2C36 /* Pods-Movearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movearch.release.xcconfig"; path = "Target Support Files/Pods-Movearch/Pods-Movearch.release.xcconfig"; sourceTree = "<group>"; };
 		F1AB2F00061985816E62F7AF /* Pods-Movearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movearch.debug.xcconfig"; path = "Target Support Files/Pods-Movearch/Pods-Movearch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +136,9 @@
 				6430162B225B4E0000A8C9EA /* MSMovieItem.m */,
 				6430162D225B514700A8C9EA /* MSMovieItemStore.h */,
 				6430162E225B514700A8C9EA /* MSMovieItemStore.m */,
+				644D74BC225F400A006731E5 /* MSBookmarkStore.h */,
+				644D74BD225F400A006731E5 /* MSBookmarkStore.m */,
+				644D74BF22604FE2006731E5 /* Model.xcdatamodeld */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -279,11 +287,13 @@
 				64301615225B197100A8C9EA /* main.m in Sources */,
 				64301633225B7A2600A8C9EA /* APIKey.m in Sources */,
 				64301641225DA2CA00A8C9EA /* MSMovieTableViewCell.m in Sources */,
+				644D74BE225F400A006731E5 /* MSBookmarkStore.m in Sources */,
 				6430162F225B514700A8C9EA /* MSMovieItemStore.m in Sources */,
 				6430162C225B4E0000A8C9EA /* MSMovieItem.m in Sources */,
 				644D74BB225F28C3006731E5 /* BookmarksTableViewController.m in Sources */,
 				64301607225B197000A8C9EA /* AppDelegate.m in Sources */,
 				64301636225B7AE000A8C9EA /* SearchURL.m in Sources */,
+				644D74C122604FE2006731E5 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +489,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		644D74BF22604FE2006731E5 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				644D74C022604FE2006731E5 /* Model.xcdatamodel */,
+			);
+			currentVersion = 644D74C022604FE2006731E5 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 643015FA225B197000A8C9EA /* Project object */;
 }
