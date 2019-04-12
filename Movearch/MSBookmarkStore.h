@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSArray *allBookmarks;
 
 +(instancetype)bookmarkBank;
-- (void)removeBookmark:(NSUInteger)searchTermIndex;
-- (void)reorderBookmarkFromIndex:(NSUInteger)from toIndex:(NSUInteger)to;
-
+- (BOOL)addBookmark:(NSString *)searchTerm;
+- (void)removeBookmark:(NSString *)searchTerm;
+- (BOOL)isContainedInBookmarkStore:(NSString *)query;
 @end
 
 NS_ASSUME_NONNULL_END

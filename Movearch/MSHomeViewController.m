@@ -13,6 +13,7 @@
 #import "MSMovieTableViewCell.h"
 #import "DGActivityIndicatorView.h"
 #import "BookmarksTableViewController.h"
+#import "MSBookmarkStore.h"
 
 @interface MSHomeViewController ()
 
@@ -236,7 +237,9 @@
         [[MSMovieItemStore sharedStore] restoreStore:prevStore];
         [self.tableView setBackgroundView:nil];
         [self.tableView reloadData];
-        self.searchBar.showsBookmarkButton = YES;
+        if (! [[MSBookmarkStore bookmarkBank] isContainedInBookmarkStore:searchTerm]){
+            self.searchBar.showsBookmarkButton = YES;
+        }
     }
 }
 
@@ -358,7 +361,22 @@
 }
 
 - (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar {
-    NSLog(@"Bookmark this search - %@", searchBar.text);
+    [[MSBookmarkStore bookmarkBank] addBookmark:searchBar.text];
+    searchBar.showsBookmarkButton = NO;
+    
+    NSString *message = [NSString stringWithFormat:@"Bookmarked search - '%@'", searchBar.text];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    int duration = 2; // duration in seconds
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    });
 }
 
 @end
