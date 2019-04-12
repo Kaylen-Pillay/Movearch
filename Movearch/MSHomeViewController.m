@@ -88,8 +88,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataReceived:) name:@"passData" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -102,6 +101,12 @@
     [super viewDidAppear:animated];
 
     self.navigationItem.hidesSearchBarWhenScrolling = true;
+    if (_bookmarkedSearch) {
+        self.searchBar.text = _bookmarkedSearch;
+        [self runSearch:_bookmarkedSearch];
+        self.searchBar.showsBookmarkButton = NO;
+       _bookmarkedSearch = nil;
+    }
 }
 
 - (void)viewWillLayoutSubviews {
@@ -220,6 +225,10 @@
     _searchTerm = searchBar.text;
     searchTerm = searchBar.text;
     
+    [self runSearch:_searchTerm];
+}
+
+- (void)runSearch:(NSString *)searchTerm {
     [[MSMovieItemStore sharedStore] clear];
     [self.tableView reloadData];
     
@@ -377,6 +386,12 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [alert dismissViewControllerAnimated:YES completion:nil];
     });
+}
+
+-(void)dataReceived:(NSNotification *)noti
+{
+    _bookmarkedSearch = noti.object;
+    _searchTerm = noti.object;
 }
 
 @end

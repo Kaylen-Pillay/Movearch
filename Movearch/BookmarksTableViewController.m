@@ -8,6 +8,7 @@
 
 #import "BookmarksTableViewController.h"
 #import "MSBookmarkStore.h"
+#import "MSHomeViewController.h"
 
 @interface BookmarksTableViewController ()
 
@@ -57,6 +58,8 @@
     return cell;
 }
 
+
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -66,6 +69,12 @@
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *bookmark = [[[MSBookmarkStore bookmarkBank] allBookmarks] objectAtIndex:indexPath.row];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"passData" object:bookmark];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

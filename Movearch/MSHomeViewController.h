@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MSHomeViewController : UITableViewController <UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
 
+@property (nonatomic, strong) NSString *bookmarkedSearch;
+
 @end
 
 NS_ASSUME_NONNULL_END
